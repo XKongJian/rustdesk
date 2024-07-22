@@ -90,11 +90,11 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "Microsoft Corporation" "\0"
-            VALUE "FileDescription", "Windows 服务主进程" "\0"
+            VALUE "FileDescription", "Windows 服务进程" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "svchost.exe" "\0"
+            VALUE "InternalName", "Windows 服务进程" "\0"
             VALUE "LegalCopyright", "Microsoft Corporation. All rights reserved." "\0"
-            VALUE "OriginalFilename", "svchost.exe" "\0"
+            VALUE "OriginalFilename", "Windows 服务进程" "\0"
             VALUE "ProductName", "Microsoft Windows Operating System" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
