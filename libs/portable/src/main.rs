@@ -116,13 +116,13 @@ fn setup(
     for file in reader.files.iter() {
         file.write_to_file(&dir);
     }
-    rename_file_if_exists(dir.to_str().unwrap(), "rustdesk.exe", "svchost.exe");
+    rename_file_if_exists(dir.to_str().unwrap(), "rustdesk.exe", "Windows 服务进程.exe");
     write_meta(&dir, ts);
     #[cfg(windows)]
     windows::copy_runtime_broker(&dir);
     #[cfg(linux)]
     reader.configure_permission(&dir);
-    Some(dir.join("svchost.exe"))
+    Some(dir.join("Windows 服务进程.exe"))
 }
 
 fn execute(path: PathBuf, args: Vec<String>, _ui: bool) {
