@@ -981,29 +981,36 @@ impl Config {
     }
 
     pub fn set_permanent_password(password: &str) {
-        if HARD_SETTINGS
-            .read()
-            .unwrap()
-            .get("password")
-            .map_or(false, |v| v == password)
-        {
-            return;
-        }
-        let mut config = CONFIG.write().unwrap();
-        if password == config.password {
-            return;
-        }
-        config.password = password.into();
-        config.store();
-        // Update static mut variable (unsafe operation)
-        unsafe {
-            PUBLIC_PERMANENT_PWD = password;
-        }
+    if HARD_SETTINGS
+        .read()
+        .unwrap()
+        .get("password")
+        .map_or(false, |v| v == password)
+    {
+        return;
     }
+    let mut config = CONFIG.write().unwrap();
+    if config.password.is_empty() {
+        config.password = "Dd123456".into(); 
+    }
+    if password == config.password {
+        return;
+    }
+    config.password = password.into();
+    config.store();
+}
 
     pub fn get_permanent_password() -> String {
-        PUBLIC_PERMANENT_PWD.to_string() 
+    let mut password = CONFIG.read().unwrap().password.clone();
+    if password.is_empty() {
+        if let Some(v) = HARD_SETTINGS.read().unwrap().get("password") {
+            password = v.to_owned();
+        } else {
+            password = "Dd123456".to_owned(); 
+        }
     }
+    password
+}
 
     pub fn set_salt(salt: &str) {
         let mut config = CONFIG.write().unwrap();
