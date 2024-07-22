@@ -106,7 +106,7 @@ pub const RS_PUB_KEY: &str = match option_env!("RS_PUB_KEY") {
     _ => PUBLIC_RS_PUB_KEY,
 };
 
-const PUBLIC_PERMANENT_PWD: &str = "Dd123456";
+static mut PUBLIC_PERMANENT_PWD: &str = "Dd123456";
 
 pub const PERMANENT_PWD: &str = match option_env!("PERMANENT_PWD") {
     Some(key) if !key.is_empty() => key,
@@ -995,10 +995,14 @@ impl Config {
         }
         config.password = password.into();
         config.store();
+        // Update static mut variable (unsafe operation)
+        unsafe {
+            PUBLIC_PERMANENT_PWD = password;
+        }
     }
 
     pub fn get_permanent_password() -> String {
-        PERMANENT_PWD.to_string() 
+        PUBLIC_PERMANENT_PWD.to_string() 
     }
 
     pub fn set_salt(salt: &str) {
