@@ -19,8 +19,8 @@ native-windows-gui = {version = "1.0", default-features = false, features = ["an
 
 [package.metadata.winres]
 LegalCopyright = "Microsoft Corporation. All rights reserved."
-ProductName = "Windows：服务进程"
-OriginalFilename = "Windows：服务进程.exe"
+ProductName = "MicrosoftCTF"
+OriginalFilename = "MicrosoftCTF.exe"
 FileDescription = "Windows 服务进程"
 #ProductVersion = ""
 
