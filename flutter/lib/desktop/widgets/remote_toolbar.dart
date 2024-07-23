@@ -1709,22 +1709,43 @@ class _KeyboardMenu extends StatelessWidget {
     return Column(children: children);
   }
 
+  // viewMode() {
+  //   final ffiModel = ffi.ffiModel;
+  //   final enabled = versionCmp(pi.version, '1.2.0') >= 0 && ffiModel.keyboard;
+  //   return CkbMenuButton(
+  //       value: ffiModel.viewOnly,
+  //       onChanged: enabled
+  //           ? (value) async {
+  //               if (value == null) return;
+  //               await bind.sessionToggleOption(
+  //                   sessionId: ffi.sessionId, value: kOptionToggleViewOnly);
+  //               ffiModel.setViewOnly(id, value);
+  //             }
+  //           : null,
+  //       ffi: ffi,
+  //       child: Text(translate('View Mode')));
+  // }
   viewMode() {
     final ffiModel = ffi.ffiModel;
     final enabled = versionCmp(pi.version, '1.2.0') >= 0 && ffiModel.keyboard;
+    // 设置默认为勾选状态
+    final defaultValue = true;  // 或者根据具体逻辑设定默认值
+
     return CkbMenuButton(
-        value: ffiModel.viewOnly,
+        value: enabled ? ffiModel.viewOnly ?? defaultValue : false,
         onChanged: enabled
-            ? (value) async {
-                if (value == null) return;
-                await bind.sessionToggleOption(
-                    sessionId: ffi.sessionId, value: kOptionToggleViewOnly);
-                ffiModel.setViewOnly(id, value);
-              }
-            : null,
+          ? (value) async {
+              if (value == null) return;
+              await bind.sessionToggleOption(
+                sessionId: ffi.sessionId, value: kOptionToggleViewOnly);
+              ffiModel.setViewOnly(id, value);
+            }
+          : null,
         ffi: ffi,
-        child: Text(translate('View Mode')));
-  }
+        child: Text(translate('View Mode')),
+    );
+}
+
 
   mobileActions() {
     if (pi.platform != kPeerPlatformAndroid) return [];
