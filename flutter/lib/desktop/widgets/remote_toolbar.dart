@@ -1728,22 +1728,24 @@ class _KeyboardMenu extends StatelessWidget {
   viewMode() {
     final ffiModel = ffi.ffiModel;
     final enabled = versionCmp(pi.version, '1.2.0') >= 0 && ffiModel.keyboard;
-    final defaultValue = true;  // 设置默认为勾选状态
+    // 设置默认勾选状态为 true
+    final initialValue = true;
   
     return CkbMenuButton(
-      value: enabled ? ffiModel.viewOnly ?? defaultValue : false,
+      value: ffiModel.viewOnly ?? initialValue, // 使用 viewOnly 的值或默认值
       onChanged: enabled
-        ? (value) async {
-            if (value == null) return;
-            await bind.sessionToggleOption(
-              sessionId: ffi.sessionId, value: kOptionToggleViewOnly);
-            ffiModel.setViewOnly(id, value);
-          }
-        : null,
+          ? (value) async {
+              if (value == null) return;
+              await bind.sessionToggleOption(
+                  sessionId: ffi.sessionId, value: kOptionToggleViewOnly);
+              ffiModel.setViewOnly(id, value);
+            }
+          : null,
       ffi: ffi,
       child: Text(translate('View Mode')),
     );
   }
+
 
 
   mobileActions() {
