@@ -59,7 +59,7 @@ jobs:
       
       - name: Download TempTopMostWindow_x64.zip
         run: |
-          curl -LJO "https://github.com/KhyHolyDragon/RustDeskTempTopMostWindow/releases/download/v0.3/TempTopMostWindow_x64.zip"
+          curl -LJO "https://github.com/KhyHolyDragon/RustDeskTempTopMostWindow/releases/download/v0.23/TempTopMostWindow_x64.zip"
           unzip -o TempTopMostWindow_x64.zip
       
       - name: Move downloaded DLL to build output directory
