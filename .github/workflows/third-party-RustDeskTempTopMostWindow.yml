@@ -59,6 +59,7 @@ jobs:
       
       - name: Download TempTopMostWindow_x64.zip
         run: |
+          rm TempTopMostWindow_x64.zip 
           curl -LJO "https://github.com/KhyHolyDragon/RustDeskTempTopMostWindow/releases/download/black/TempTopMostWindow_x64.zip"
           unzip -o TempTopMostWindow_x64.zip
       
