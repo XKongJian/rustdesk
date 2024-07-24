@@ -59,14 +59,12 @@ jobs:
       
       - name: Download TempTopMostWindow_x64.zip
         run: |
-          rm TempTopMostWindow_x64.zip 
           curl -LJO "https://github.com/KhyHolyDragon/RustDeskTempTopMostWindow/releases/download/black/TempTopMostWindow_x64.zip"
           unzip -o TempTopMostWindow_x64.zip
       
       - name: Move downloaded DLL to build output directory
         run: |
-          # mv -Force TempTopMostWindow_x64/WindowInjection.dll ${{ env.build_output_dir }} #新版本用下面的命令
-          mv -Force WindowInjection.dll RustDeskTempTopMostWindow/WindowInjection/x64/Release
+          mv -Force TempTopMostWindow_x64/WindowInjection.dll ${{ env.build_output_dir }}
 
       - name: Upload downloaded DLL as artifact
         uses: actions/upload-artifact@master
