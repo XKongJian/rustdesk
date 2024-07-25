@@ -105,7 +105,7 @@ class FfiModel with ChangeNotifier {
   bool _touchMode = false;
   Timer? _timer;
   var _reconnects = 1;
-  bool _viewOnly = false;
+  bool _viewOnly = true;
   WeakReference<FFI> parent;
   late final SessionID sessionId;
 
